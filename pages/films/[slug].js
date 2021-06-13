@@ -55,11 +55,11 @@ const InstallationFilmBody = ({handleImageClick, coverImage, title, details, des
             <h1 className="font-bold md:text-2xl lg:text-3xl xl:text-4xl">{title}</h1>
             <p className="mb-2">{medium}</p>
             <div className="flex flex-col md:w-3/4">
-              {details.map((block, i) => <RichText key={i} content={block} />)}
+              {details?.map((block, i) => <RichText key={i} content={block} />)}
             </div>
           </div>
           <div className="flex flex-col lg:w-3/4 mt-2 lg:pl-4 pb-8">
-            {description.map((block, i) => <RichText key={i} content={block} />)}
+            {description?.map((block, i) => <RichText key={i} content={block} />)}
             <p className="mt-2">Click the image for installation views</p>
           </div>
       </div>
@@ -189,7 +189,7 @@ export async function getStaticPaths() {
   );
   
   return {
-    paths: paths.map((slug) => ({ params: { slug } })),
+    paths: paths?.map((slug) => ({ params: { slug } })),
     fallback: true,
   };
 }

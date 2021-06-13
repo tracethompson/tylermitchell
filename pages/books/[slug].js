@@ -14,7 +14,7 @@ const query = groq`*[_type == "book" && slug.current == $slug][0]`;
 
 const MainBody = ({handleImageClick, coverImage, title, details, description, showImageGallery, subtitle, images, setPage, page, direction, paginate, date, pressRelease, slug, buy}) => {
   const year = date?.slice(0, 4)
-  const {asset: { url }} = getTheFile(pressRelease.asset)
+  const {asset: { url }} = getTheFile(pressRelease?.asset)
 
   if (showImageGallery) {
     return (
@@ -125,7 +125,7 @@ function BookContainer({ bookData }) {
   const [chunkedImages, setChunkedImages] = useState([])
 
   const formattedImages = images && images.map(img => {
-    const {aspectRatio} = getImageDimensions(img.asset)
+    const {aspectRatio} = getImageDimensions(img?.asset)
     return {
       src: urlFor(img.asset).auto("format").fit("max").height(800).quality(100),
       aspectRatio,
@@ -194,7 +194,7 @@ export async function getStaticPaths() {
   
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: true,
+    fallback: true, 
   };
 }
 

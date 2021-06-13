@@ -36,7 +36,7 @@ function PhotoContainer({ photoData }) {
     setPage([page + newDirection, newDirection]);
   };
 
-  const formattedImages = images.map(img => {
+  const formattedImages = images?.map(img => {
     const {aspectRatio} = getImageDimensions(img.asset)
     return {
       src: urlFor(img.asset).auto("format").fit("max").height(800).quality(100),
@@ -88,7 +88,7 @@ export async function getStaticPaths() {
   
 
   return {
-    paths: paths.map((slug) => ({ params: { slug } })),
+    paths: paths?.map((slug) => ({ params: { slug } })),
     fallback: true,
   };
 }
