@@ -5,6 +5,8 @@ import {
   createPreviewSubscriptionHook,
 } from "next-sanity";
 
+import { getFile } from '@sanity/asset-utils'
+
 const config = {
   /**
    * Find your project ID and dataset in `sanity.json` in your studio project.
@@ -36,6 +38,11 @@ if (!config.dataset) {
  **/
 export const urlFor = (source) => createImageUrlBuilder(config).image(source);
 
+export const urlForFile = (source) => buildFileUrl(source, config);
+
+export const getTheFile = (source) => getFile(source, config);
+
+
 // Set up the live preview subsscription hook
 export const usePreviewSubscription = createPreviewSubscriptionHook(config);
 
@@ -59,3 +66,42 @@ export const previewClient = createClient({
 // Helper function for easily switching between normal client and preview client
 export const getClient = (usePreview) =>
   usePreview ? previewClient : sanityClient;
+
+
+export const chunkImages = images => {
+  const chunks = []
+  let chunk = []
+  images.forEach(img => {
+    const {src, aspectRatio} = img
+    new Image().src = img.src
+
+    // is a landscape
+    if (aspectRatio > 1) {
+      // push if portrait exists in it
+      if (chunk.length) {
+        chunks.push(chunk)
+      }
+
+      // empty chunk
+      chunk = []
+
+      // fill with the new guy
+      chunk.push(src)
+      chunks.push(chunk)
+
+      chunk = []
+      return
+    } else {
+      chunk.push(src)
+
+      //is the second portrait
+      if (chunk.length > 1) {
+        chunks.push(chunk)
+        chunk = []
+        return
+      }
+    }
+  })
+
+  return chunks
+}

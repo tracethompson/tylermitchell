@@ -1,40 +1,38 @@
-import Error from "next/error";
 import { useRouter } from "next/router";
-import { getClient, usePreviewSubscription } from "../utils/sanity";
-import ProductsPage from "../components/ProductsPage";
+import { getClient, urlFor } from "../utils/sanity";
+import Layout from "../components/Layout";
 
 const query = `//groq
-  *[_type == "product" && defined(slug.current)]
+  *[] | order(date desc) [0]
 `;
 
 function IndexPage(props) {
-  const { productsData, preview } = props;
+  const { data, preview } = props;
   const router = useRouter();
 
-  if (!router.isFallback && !productsData) {
-    return <Error statusCode={404} />;
-  }
-  const { data: products } = usePreviewSubscription(query, {
-    initialData: productsData,
-    enabled: preview || router.query.preview !== null,
-  });
-
   return (
-    <div className="my-8">
-      <div className="mt-4">
-        <ProductsPage products={products} />
+    <Layout>
+      <div className="h-full max-h-full mx-auto py-8">
+          <img
+            className="max-h-full max-w-full obect-cover mx-auto"
+            src={urlFor(data?.coverImage)
+              .auto("format")
+              .width(1051)
+              .fit("crop")
+              .quality(100)
+            }
+          />
       </div>
-    </div>
+    </Layout>
   );
 }
 
 export async function getStaticProps({ params = {}, preview = false }) {
-  const productsData = await getClient(preview).fetch(query);
-
+  const data = await getClient(preview).fetch(query);
   return {
     props: {
       preview,
-      productsData,
+      data,
     },
   };
 }

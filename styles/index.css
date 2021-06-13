@@ -1,14 +1,140 @@
 @tailwind base;
 
 /* Write your own custom base styles here */
+@font-face {
+  font-family: "Univers";
+  src: url("/fonts/Linotype-UniversLTPro-55Roman.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Univers";
+  src: url("/fonts/Linotype-UniversLTPro-65Bold.woff") format("woff");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Univers";
+  src: url("/fonts/Linotype-UniversLTPro-55Oblique.woff") format("woff");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Univers";
+  src: url("/fonts/Linotype-UniversLTPro-65BoldOblique.woff") format("woff");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Akzidenz";
+  src: url("/fonts/AkzidGrtskProReg.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Akzidenz";
+  src: url("/fonts/AkzidGrtskProBol.woff") format("woff");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Akzidenz";
+  src: url("/fonts/AkzidGrtskProIta.woff") format("woff");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Akzidenz";
+  src: url("/fonts/AkzidGrtskProBolIta.woff") format("woff");
+  font-style: italic;
+}
 
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */
 
 /* Write your own custom component styles here */
-.btn-blue {
-  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+
+html {
+  @apply font-body min-h-full h-full w-full min-w-full max-w-full max-h-full;
+}
+
+body {
+  @apply h-full;
+}
+
+.content__width {
+  @apply w-full;
+}
+
+#__next {
+  @apply h-full;
+}
+
+.player-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+  height: 0;
+}
+
+.player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.example-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.next,
+.prev {
+  top: calc(50% - 20px);
+  position: absolute;
+  background: white;
+  border-radius: 30px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  z-index: 2;
+}
+
+.next {
+  right: 10px;
+}
+
+.prev {
+  left: 10px;
+  transform: scale(-1);
+}
+
+.refresh {
+  padding: 10px;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mobile__image {
+  @apply absolute left-0 right-0 mx-auto max-w-full;
+  max-height: 100%
 }
 
 /* Start purging... */
@@ -16,3 +142,16 @@
 /* Stop purging. */
 
 /* Your own custom utilities */
+
+@screen lg {
+  .content__width {
+    @apply ml-auto mt-0;
+    width: calc(100% - 167px);
+  }
+}
+
+@screen md {
+  .mobile__image {
+    max-height: 70%
+  }
+}

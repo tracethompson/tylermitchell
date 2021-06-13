@@ -1,11 +1,11 @@
 {
   "root": true,
   "api": {
-    "projectId": "placeholder",
-    "dataset": "placeholder"
+    "projectId": "x2fvlqw9",
+    "dataset": "production"
   },
   "project": {
-    "name": "Next.JS E-commerce example",
+    "name": "Tyler Mitchell",
     "basePath": "/studio"
   },
   "plugins": [

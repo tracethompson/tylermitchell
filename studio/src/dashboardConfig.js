@@ -10,11 +10,7 @@ export default {
     { name: "project-users", layout: { height: "auto" } },
     {
       name: "document-list",
-      options: {
-        title: "Recent products",
-        order: "_createdAt desc",
-        types: ["product"],
-      },
+      options: { },
       layout: { width: "medium" },
     },
   ],

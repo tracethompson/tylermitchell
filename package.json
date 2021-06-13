@@ -15,12 +15,16 @@
     "url": "git+https://github.com/sanity-io/sanity-template-nextjs-ecommerce.git"
   },
   "dependencies": {
+    "@sanity/asset-utils": "^1.1.5",
     "@sanity/client": "^2.0.1",
     "@sanity/image-url": "^0.140.19",
+    "framer-motion": "^4.1.17",
     "next": "^10.0.1",
     "next-sanity": "^0.1.8",
+    "popmotion": "^9.3.6",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-player": "^2.9.0"
   },
   "devDependencies": {
     "@sanity/cli": "^2.0.9",
