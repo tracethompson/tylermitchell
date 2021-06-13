@@ -133,8 +133,8 @@ body {
 }
 
 .mobile__image {
-  @apply absolute left-0 right-0 mx-auto max-w-full;
-  max-height: 100%
+  @apply absolute left-0 right-0 mx-auto max-w-full top-0 bottom-0 my-auto;
+  max-height: 
 }
 
 /* Start purging... */
@@ -150,8 +150,8 @@ body {
   }
 }
 
-@screen md {
+@screen lg {
   .mobile__image {
-    max-height: 70%
+    /* max-height: 70% */
   }
 }
