@@ -14,7 +14,9 @@ const query = groq`*[_type == "book" && slug.current == $slug][0]`;
 
 const MainBody = ({handleImageClick, coverImage, title, details, description, showImageGallery, subtitle, images, setPage, page, direction, paginate, date, pressRelease, slug, buy}) => {
   const year = date?.slice(0, 4)
-  const {asset: { url }} = getTheFile(pressRelease?.asset)
+  const file = pressRelease && getTheFile(pressRelease)
+  const url = file?.url
+
 
   if (showImageGallery) {
     return (
@@ -62,7 +64,7 @@ const MainBody = ({handleImageClick, coverImage, title, details, description, sh
           <div className="flex flex-col lg:w-3/5 mt-2 lg:pl-4 pb-8 lg:pb-0">
             {description && description.map((block, i) => <RichText key={i} content={block} />)}
             <div className="flex flex-col md:w-3/4">
-              {details.map((block, i) => <RichText key={i} content={block} />)}
+              {details && details.map((block, i) => <RichText key={i} content={block} />)}
             </div>
             <div className="flex flex-row mt-auto">
               <a href={url} target="_blank">

@@ -13,7 +13,8 @@ import { getImageDimensions } from '@sanity/asset-utils'
 const query = groq`*[_type == "exhibition" && slug.current == $slug][0]`;
 
 const MainBody = ({handleImageClick, coverImage, title, description, showImageGallery, images, setPage, page, direction, paginate, pressRelease}) => {
-  const {asset: { url }} = getTheFile(pressRelease?.asset)
+  const file = pressRelease && getTheFile(pressRelease)
+  const url = file?.url
 
   if (showImageGallery) {
     return (
@@ -173,6 +174,7 @@ export async function getStaticPaths() {
   
   return {
     paths: paths && paths.map((slug) => ({ params: { slug } })),
+    fallback: true,
   };
 }
 

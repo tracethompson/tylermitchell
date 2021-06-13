@@ -5,7 +5,7 @@ import {
   createPreviewSubscriptionHook,
 } from "next-sanity";
 
-import { getFile } from '@sanity/asset-utils'
+import { buildFileUrl, getFileAsset, getFile } from '@sanity/asset-utils'
 
 const config = {
   /**
@@ -40,7 +40,7 @@ export const urlFor = (source) => createImageUrlBuilder(config).image(source);
 
 export const urlForFile = (source) => buildFileUrl(source, config);
 
-export const getTheFile = (source) => getFile(source, config);
+export const getTheFile = (source) => getFileAsset(source, config);
 
 
 // Set up the live preview subsscription hook

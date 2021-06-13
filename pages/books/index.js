@@ -11,10 +11,10 @@ function BooksPageContainer({ data }) {
     <Layout>
       <div className="py-8 px-8 xl:px-20">
         {data.map(book => {
-          const { coverImage, title, subtitle, date, slug } = book
+          const { coverImage, title, subtitle, date, slug, _id } = book
           const year = date?.slice(0, 4)
           return (
-            <Link href={`/books/${slug.current}`}>
+            <Link href={`/books/${slug.current}`} key={_id}>
               <div className="flex w-full mb-8 h-full relative cursor-pointer">
                 <img
                   className="shop__image w-1/3"

@@ -8,14 +8,15 @@ const query = `//groq
 `;
 
 function ExhibitionsPageContainer({ data }) {
+  console.log('data: ', data)
   return  (
     <Layout>
       <div className="py-8 px-8 xl:px-20">
         {data.map(exhibition => {
-          const { coverImage, title, description, slug } = exhibition
+          const { coverImage, title, description, slug, _id } = exhibition
           return (
-            <Link href={`/exhibitions/${slug.current}`}>
-              <div className="flex w-full mb-8 h-full relative">
+            <Link href={`/exhibitions/${slug.current}`} key={_id}>
+              <div className="flex w-full mb-8 h-full relative cursor-pointer">
                 <img
                   className="shop__image w-1/3"
                   src={
