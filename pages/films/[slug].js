@@ -142,7 +142,7 @@ function FilmContainer({ filmData, siteSettings }) {
       <div className="w-full h-full">
         {embed ?
           (
-            <div className="md:pt-8 w-full px-4 lg:px-0 lg:w-10/12 mx-auto my-auto h-full">
+            <div className="md:pt-8 w-full px-4 lg:px-0 lg:w-10/12 mx-auto my-auto h-full pt-10">
               <div className="player-wrapper">
                 {embed && embed.url && (
                   <ReactPlayer

@@ -72,7 +72,7 @@ body {
 .player-wrapper {
   position: relative;
   padding-bottom: 56.25%; /* Player ratio: 100 / (1280 / 720) */
-  height: 90%;
+  height: 0;
 }
 
 .player {
@@ -147,9 +147,5 @@ body {
   .content__width {
     @apply ml-auto mt-0;
     width: calc(100% - 167px);
-  }
-
-  .player-wrapper {
-    height: 0;
   }
 }
