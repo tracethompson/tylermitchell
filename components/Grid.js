@@ -45,7 +45,7 @@ const GridItemPhoto = ({
   item: { title, coverImage, slug},
 }) => {
   return (
-    <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-4">
+    <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 md:px-4 mb-4">
       <Link href={`/photography/${slug.current}`}>
         <div
           className="w-full relative cursor-pointer group"

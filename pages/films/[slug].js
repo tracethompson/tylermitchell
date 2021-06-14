@@ -15,7 +15,7 @@ const query = groq`*[_type == "film" && slug.current == $slug][0]`;
 const InstallationFilmBody = ({handleImageClick, coverImage, title, details, description, showImageGallery, medium, images, setPage, page, direction, paginate}) => {
   if (showImageGallery) {
     return (
-      <div className="h-full md:pt-8 pb-16 px-8 mx-auto flex content-center items-center relative">
+      <div className="h-full md:pt-8 pb-16 px-4 md:px-8 mx-auto flex content-center items-center relative">
         <ImageGallery images={images} {...{page, direction, setPage, paginate}}/>
       </div>
     )

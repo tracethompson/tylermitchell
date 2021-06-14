@@ -104,7 +104,7 @@ export default function ImageGallery({images, page, direction, setPage, paginate
     const chunk = images[imageIndex]
     if (chunk.length > 1) {
       return (
-        <div className="flex flex-row w-full h-full content-center items-center">
+        <div className="flex flex-row w-full h-full content-center items-center" onClick={handleClick}>
           <div className="w-1/2 h-full pr-4 flex items-center content-center">
             <img className="max-h-full" src={chunk[0]}/>
           </div>
@@ -124,6 +124,15 @@ export default function ImageGallery({images, page, direction, setPage, paginate
   const flatImages = images.flat()
   let imageIndex = wrap(0, flatImages.length, page);
 
+  const handleClick = e => {
+    const target = e?.nativeEvent?.offsetX || e?.offsetX
+    const center = e?.target?.clientWidth / 2
+    if (target < center) {
+      paginate(-1)
+    } else {
+      paginate(1)
+    }
+  }
 
   return (
     <div className="relative left-0 w-full max-h-full h-full">
@@ -137,11 +146,12 @@ export default function ImageGallery({images, page, direction, setPage, paginate
           initial="enter"
           animate="center"
           exit="exit"
+          onClick={handleClick}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={1}
           transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
+            x: { type: "spring", stiffness: 800, damping: 50 },
             opacity: { duration: 0.2 }
           }}
           onDragEnd={(e, { offset, velocity }) => {

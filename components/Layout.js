@@ -78,15 +78,25 @@ const MakeHeaderItems = ({route}) => {
 
 const Header = ({route}) => {
   return (
-    <header className="pt-4 pl-4 lg:pt-8 lg:pl-8 lg:absolute left-0 top-0 lg:h-full lg:text-right">
+    <header className="pt-4 pl-4 mb-2 lg:pt-8 lg:pl-8 lg:absolute left-0 top-0 lg:h-full lg:text-right">
       <nav>
-        <div className="flex flex-col">
-          <Link href="/">
-            <a className="text-black font-bold text-xl">
-              Tyler Mitchell
+        <div className="flex flex-row">
+          <div className="flex flex-col">
+            <Link href="/">
+              <a className="text-black font-bold text-xl">
+                Tyler Mitchell
+              </a>
+            </Link>
+            <MakeHeaderItems route={route} />
+          </div>
+          <div className="block lg:hidden flex flex-col ml-auto pr-4 lg:pl-8 text-right">
+            <a href="https://icmyfg.com" className="text-accent mb">
+              ICMYFG
             </a>
-          </Link>
-          <MakeHeaderItems route={route} />
+            <a href="https://www.instagram.com/tylersphotos/?hl=en" className="text-accent mb">
+              @tylersphotos
+            </a>
+          </div>
         </div>
       </nav>
     </header>
@@ -95,9 +105,11 @@ const Header = ({route}) => {
 
 
 function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, title, description, latest, coverImage}) {
-  const { route, asPath } = useRouter()
+  const router = useRouter()
+  const {asPath, route} = router
   const isHome = route === '/'
   const ogUrl = asPath ? `${BASE_URL}${asPath}` : BASE_URL
+
 
   const defaultTitle = siteSettings && siteSettings[0]?.title
   const defaultDescription = siteSettings && siteSettings[0]?.description
@@ -140,7 +152,7 @@ function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, t
         <footer className="absolute w-full left-0 bottom-0 pb-4 px-4 lg:pb-8 lg:px-8 flex text-right">  
           {isHome ? 
           (
-            <div className="flex flex-col mt-auto">
+            <div className="flex-col mt-auto hidden lg:flex">
               <a href="https://icmyfg.com" className="text-accent mb">
                 ICMYFG
               </a>

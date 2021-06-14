@@ -20,7 +20,7 @@ const MainBody = ({handleImageClick, coverImage, title, details, description, sh
 
   if (showImageGallery) {
     return (
-      <div className="h-full md:pt-8 pb-16 px-8 mx-auto flex content-center items-center relative">
+      <div className="h-full md:pt-8 pb-16 px-4 lg:px-8 mx-auto flex content-center items-center relative">
         <ImageGallery images={images} {...{page, direction, setPage, paginate}}/>
       </div>
     )
@@ -162,18 +162,23 @@ function BookContainer({ bookData, siteSettings }) {
     setShowImageGallery(false)
   }
 
+  const handlePag = (pag) => {
+    if (!showImageGallery) return
+    paginate(pag)
+  }
+
   return (
     <Layout coverImage={coverImage} currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery} siteSettings={siteSettings} title={title}>
-      <div className="w-full h-full">
+      <div className="w-full h-full relative">
         <div className="relative w-full h-full">
-          <MainBody {...{handleImageClick, coverImage, title, details, description, subtitle, showImageGallery, images: chunkedImages, setPage, page, direction, paginate, date, pressRelease, slug, buy}} />
-          {showImageGallery ?
-            <div className="flex flex-row w-full h-full absolute top-0 left-0">
-              <div className="w-1/2 cursor-pointer" onClick={() => paginate(-1)}/>
-              <div className="w-1/2 cursor-pointer" onClick={() => paginate(1)}/>
-            </div> : null
-          }
+          <MainBody  {...{handleImageClick, coverImage, title, details, description, subtitle, showImageGallery, images: chunkedImages, setPage, page, direction, paginate, date, pressRelease, slug, buy}} />
         </div>
+        {showImageGallery ? 
+          <div className="flex flex-row w-full h-full absolute top-0 left-0">
+            <div className="w-1/2 cursor-pointer" onClick={() => handlePag(-1)}/>
+            <div className="w-1/2 cursor-pointer" onClick={() => handlePag(1)}/>
+          </div> : null
+        }
       </div>
     </Layout>
   );

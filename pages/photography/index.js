@@ -9,7 +9,7 @@ const query = `//groq
 function PhotographyPageContainer({ data, siteSettings }) {
   return  (
     <Layout siteSettings={siteSettings} latest={data[0]} title="Photography">
-      <div className="py-8 px-8 xl:px-20">
+      <div className="py-8 px-4 lg:px-8 xl:px-20">
         <Grid items={data} type="photo" />
       </div>
     </Layout>
