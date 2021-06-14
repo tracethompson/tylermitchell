@@ -106,9 +106,9 @@ function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, t
   if (coverImage) {
     imgAsset = coverImage.asset
   } else {
-    imgAsset = latest ? latest?.coverImage?.asset : image?.imgAsset
+    imgAsset = latest ? latest?.coverImage?.asset : image?.asset
   }
-  
+
   const ogImage = urlFor(imgAsset)
       .auto("format")
       .fit("max")

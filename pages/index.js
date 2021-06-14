@@ -6,7 +6,7 @@ const query = `//groq
   *[] | order(date desc) [0]
 `;
 
-function IndexPage({ data, preview, siteSettings }) {
+function IndexPage({ data, siteSettings }) {
   return (
     <Layout siteSettings={siteSettings}>
       <div className="h-full max-h-full mx-auto py-8">
