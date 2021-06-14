@@ -8,7 +8,7 @@ const query = `//groq
 
 function IndexPage({ data, preview, siteSettings }) {
   return (
-    <Layout siteSettings={siteSettings} title="Books">
+    <Layout siteSettings={siteSettings}>
       <div className="h-full max-h-full mx-auto py-8">
           <img
             className="max-h-full max-w-full obect-cover mx-auto"

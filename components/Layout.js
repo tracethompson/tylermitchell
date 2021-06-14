@@ -94,7 +94,7 @@ const Header = ({route}) => {
 }
 
 
-function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, title, description, latest}) {
+function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, title, description, latest, coverImage}) {
   const { route, asPath } = useRouter()
   const isHome = route === '/'
   const ogUrl = asPath ? `${BASE_URL}${asPath}` : BASE_URL
@@ -102,7 +102,12 @@ function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, t
   const defaultTitle = siteSettings && siteSettings[0]?.title
   const defaultDescription = siteSettings && siteSettings[0]?.description
   const image = siteSettings && siteSettings[0]?.image
-  const imgAsset = latest ? latest?.coverImage?.asset : image?.asset
+  let imgAsset = null
+  if (coverImage) {
+    imgAsset = coverImage.asset
+  } else {
+    imgAsset = latest ? latest?.coverImage?.asset : image?.imgAsset
+  }
   
   const ogImage = urlFor(imgAsset)
       .auto("format")

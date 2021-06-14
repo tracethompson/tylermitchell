@@ -141,7 +141,7 @@ function ExhibitionsContainer({ exhibitionData, siteSettings }) {
   }
 
   return (
-    <Layout currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery} siteSettings={siteSettings} title={title}>
+    <Layout coverImage={coverImage} currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery} siteSettings={siteSettings} title={title}>
       <div className="w-full h-full">
         <div className="relative w-full h-full">
           <MainBody {...{handleImageClick, coverImage, title, description, showImageGallery, images: chunkedImages, setPage, page, direction, paginate, pressRelease, slug, buy}} />

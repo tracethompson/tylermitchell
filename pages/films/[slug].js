@@ -138,7 +138,7 @@ function FilmContainer({ filmData, siteSettings }) {
   }
 
   return (
-    <Layout title={title} siteSettings={siteSettings} currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery}>
+    <Layout coverImage={coverImage} title={title} siteSettings={siteSettings} currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery}>
       <div className="w-full h-full">
         {embed ?
           (

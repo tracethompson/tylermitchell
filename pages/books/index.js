@@ -8,7 +8,7 @@ const query = `//groq
 
 function BooksPageContainer({ data, siteSettings }) {
   return  (
-    <Layout siteSettings={siteSettings} latest={data[0]}>
+    <Layout siteSettings={siteSettings} latest={data[0]} title="Books">
       <div className="py-8 px-8 xl:px-20">
         {data.map(book => {
           const { coverImage, title, subtitle, date, slug, _id } = book
