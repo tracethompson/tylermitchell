@@ -57,9 +57,9 @@ function PhotoContainer({ photoData, siteSettings }) {
 
   return (
     <Layout title={title} siteSettings={siteSettings} coverImage={coverImage}>
-      <div className="w-full h-full md:pt-8 pb-16">
+      <div className="w-full h-full md:pt-8 lg:pb-16">
         <div className="relative w-full h-full flex content-center items-center">
-          <div className="h-full w-full md:pt-8 pb-16 px-4 lg:px-8 mx-auto flex content-center items-center relative">
+          <div className="h-full w-full md:pt-8 lg:pb-16 px-4 lg:px-8 mx-auto flex content-center items-center relative">
             <ImageGallery images={chunkedImages} {...{page, direction, setPage, paginate}}/>
           </div>
           <div className="flex flex-row w-full h-full absolute top-0 left-0">
