@@ -6,12 +6,9 @@ const query = `//groq
   *[] | order(date desc) [0]
 `;
 
-function IndexPage(props) {
-  const { data, preview } = props;
-  const router = useRouter();
-
+function IndexPage({ data, preview, siteSettings }) {
   return (
-    <Layout>
+    <Layout siteSettings={siteSettings} title="Books">
       <div className="h-full max-h-full mx-auto py-8">
           <img
             className="max-h-full max-w-full obect-cover mx-auto"
@@ -28,11 +25,17 @@ function IndexPage(props) {
 }
 
 export async function getStaticProps({ params = {}, preview = false }) {
+  const settingsQuery = `//groq
+    *[_type == "siteConfig"]
+  `
+  const siteSettings = await getClient(true).fetch(settingsQuery);
+
   const data = await getClient(preview).fetch(query);
   return {
     props: {
       preview,
       data,
+      siteSettings
     },
   };
 }

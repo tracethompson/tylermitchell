@@ -3,12 +3,12 @@ import Layout from "../../components/Layout";
 import Link from 'next/link'
 
 const query = `//groq
-  *[_type == "book"]
+  *[_type == "book"] | order(date desc)
 `;
 
-function BooksPageContainer({ data }) {
+function BooksPageContainer({ data, siteSettings }) {
   return  (
-    <Layout>
+    <Layout siteSettings={siteSettings} latest={data[0]}>
       <div className="py-8 px-8 xl:px-20">
         {data.map(book => {
           const { coverImage, title, subtitle, date, slug, _id } = book
@@ -43,8 +43,13 @@ function BooksPageContainer({ data }) {
 export async function getStaticProps({ params = {} }) {
   const data = await getClient(true).fetch(query);
 
+  const settingsQuery = `//groq
+    *[_type == "siteConfig"]
+  `
+  const siteSettings = await getClient(true).fetch(settingsQuery);
+
   return {
-    props: { data },
+    props: { data, siteSettings },
   };
 }
 

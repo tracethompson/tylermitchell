@@ -9,6 +9,7 @@ import photo from "./documents/photo";
 import embed from "./documents/embed";
 import book from "./documents/book";
 import exhibition from "./documents/exhibition";
+import siteConfig from './documents/siteConfig'
 
 // Object types
 import blockContent from "./objects/blockContent";
@@ -23,6 +24,7 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
+    siteConfig,
     embed,
     photo,
     film,

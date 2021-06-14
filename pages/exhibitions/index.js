@@ -4,13 +4,12 @@ import RichText from "../../components/RichText";
 import Link from 'next/link'
 
 const query = `//groq
-  *[_type == "exhibition"]
+  *[_type == "exhibition"] | order(endDate desc)
 `;
 
-function ExhibitionsPageContainer({ data }) {
-  console.log('data: ', data)
+function ExhibitionsPageContainer({ data, siteSettings }) {
   return  (
-    <Layout>
+    <Layout siteSettings={siteSettings} latest={data[0]} title="Exhibitions">
       <div className="py-8 px-8 xl:px-20">
         {data.map(exhibition => {
           const { coverImage, title, description, slug, _id } = exhibition
@@ -43,8 +42,13 @@ function ExhibitionsPageContainer({ data }) {
 export async function getStaticProps({ params = {} }) {
   const data = await getClient(true).fetch(query);
 
+  const settingsQuery = `//groq
+    *[_type == "siteConfig"]
+  `
+  const siteSettings = await getClient(true).fetch(settingsQuery);
+
   return {
-    props: { data },
+    props: { data, siteSettings },
   };
 }
 

@@ -81,7 +81,7 @@ const MainBody = ({handleImageClick, coverImage, title, description, showImageGa
   )
 } 
 
-function ExhibitionsContainer({ exhibitionData }) {
+function ExhibitionsContainer({ exhibitionData, siteSettings }) {
   const router = useRouter();
   if (!router.isFallback && !exhibitionData?.slug) {
     return <Error statusCode={404} />;
@@ -141,7 +141,7 @@ function ExhibitionsContainer({ exhibitionData }) {
   }
 
   return (
-    <Layout currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery}>
+    <Layout currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery} siteSettings={siteSettings} title={title}>
       <div className="w-full h-full">
         <div className="relative w-full h-full">
           <MainBody {...{handleImageClick, coverImage, title, description, showImageGallery, images: chunkedImages, setPage, page, direction, paginate, pressRelease, slug, buy}} />
@@ -162,8 +162,13 @@ export async function getStaticProps({ params, preview = false }) {
     slug: params.slug,
   });
 
+  const settingsQuery = `//groq
+    *[_type == "siteConfig"]
+  `
+  const siteSettings = await getClient(true).fetch(settingsQuery);
+
   return {
-    props: { preview, exhibitionData, params },
+    props: { preview, exhibitionData, params, siteSettings },
   };
 }
 

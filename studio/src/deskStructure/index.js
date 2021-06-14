@@ -3,9 +3,7 @@ import { MdWeb, MdSettings, MdWhatshot, MdLooks } from "react-icons/md";
 // Hide document types that we already have a structure definition for
 const hiddenDocTypes = (listItem) =>
   ![
-    "category",
-    "person",
-    "sampleProject",
+    "siteSettings"
   ].includes(listItem.getId());
 
 export default () =>

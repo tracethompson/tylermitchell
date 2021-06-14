@@ -1,6 +1,10 @@
-import { useState } from "react";
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Link from "next/link";
+import { urlFor } from "../utils/sanity";
+
+const BASE_URL = 'https://tylermitchell.co'
+
 
 const MakeHeaderItems = ({route}) => {
   const linkClass = `text-black lg:text-right text-lg mt`
@@ -90,36 +94,68 @@ const Header = ({route}) => {
 }
 
 
-function Layout({ children, currentTitle, onBackPress, showBack}) {
-  const { route } = useRouter()
+function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, title, description, latest}) {
+  const { route, asPath } = useRouter()
   const isHome = route === '/'
+  const ogUrl = asPath ? `${BASE_URL}${asPath}` : BASE_URL
+
+  const defaultTitle = siteSettings && siteSettings[0]?.title
+  const defaultDescription = siteSettings && siteSettings[0]?.description
+  const image = siteSettings && siteSettings[0]?.image
+  const imgAsset = latest ? latest?.coverImage?.asset : image?.asset
+  
+  const ogImage = urlFor(imgAsset)
+      .auto("format")
+      .fit("max")
+      .width(1200)
+      .quality(100)
+      ogImage
+
+  
+  const pageTitle = title ? `${title} | Tyler Mitchell` : defaultTitle
+  const ogDescription = description || defaultDescription
+  
+
+
   return (
-    <div className="bg-white flex flex-col h-full max-h-full w-full overflow-scroll">
-      <Header {...{route}}/>
-      <main className="content__width max-h-full h-full overflow-scroll">{children}</main>
-      <footer className="absolute w-full left-0 bottom-0 pb-4 px-4 lg:pb-8 lg:px-8 flex text-right">  
-        {isHome ? 
-        (
-          <div className="flex flex-col mt-auto">
-            <a href="https://icmyfg.com" className="text-accent mb">
-              ICMYFG
-            </a>
-            <a href="https://www.instagram.com/tylersphotos/?hl=en" className="text-accent mb">
-              @tylersphotos
-            </a>
-          </div>
-          ) : null
-        }
-        { currentTitle ?
-          <h2 className="mt-auto text-lg">
-            {currentTitle}
-          </h2> : null
-        }
-        { showBack ?
-          <h1 className="cursor-pointer text-lg mt-auto ml-auto" onClick={onBackPress}>Back</h1> : null
-        }
-      </footer>
-    </div>
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content={ogDescription} />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="og:type" content="website" />
+        <meta name="og:title" content={pageTitle} />
+        <meta name="og:url" content={ogUrl} />
+        <meta name="og:description" content={ogDescription} />
+        <meta name="og:image" content={ogImage} />
+      </Head>
+      <div className="bg-white flex flex-col h-full max-h-full w-full overflow-scroll">
+        <Header {...{route}}/>
+        <main className="content__width max-h-full h-full overflow-scroll">{children}</main>
+        <footer className="absolute w-full left-0 bottom-0 pb-4 px-4 lg:pb-8 lg:px-8 flex text-right">  
+          {isHome ? 
+          (
+            <div className="flex flex-col mt-auto">
+              <a href="https://icmyfg.com" className="text-accent mb">
+                ICMYFG
+              </a>
+              <a href="https://www.instagram.com/tylersphotos/?hl=en" className="text-accent mb">
+                @tylersphotos
+              </a>
+            </div>
+            ) : null
+          }
+          { currentTitle ?
+            <h2 className="mt-auto text-lg">
+              {currentTitle}
+            </h2> : null
+          }
+          { showBack ?
+            <h1 className="cursor-pointer text-lg mt-auto ml-auto" onClick={onBackPress}>Back</h1> : null
+          }
+        </footer>
+      </div>
+    </>
   );
 }
 

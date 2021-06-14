@@ -100,7 +100,7 @@ const MainBody = ({handleImageClick, coverImage, title, details, description, sh
   )
 } 
 
-function BookContainer({ bookData }) {
+function BookContainer({ bookData, siteSettings }) {
   const router = useRouter();
   if (!router.isFallback && !bookData?.slug) {
     return <Error statusCode={404} />;
@@ -163,7 +163,7 @@ function BookContainer({ bookData }) {
   }
 
   return (
-    <Layout currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery}>
+    <Layout currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery} siteSettings={siteSettings} title={title}>
       <div className="w-full h-full">
         <div className="relative w-full h-full">
           <MainBody {...{handleImageClick, coverImage, title, details, description, subtitle, showImageGallery, images: chunkedImages, setPage, page, direction, paginate, date, pressRelease, slug, buy}} />
@@ -184,8 +184,13 @@ export async function getStaticProps({ params, preview = false }) {
     slug: params.slug,
   });
 
+  const settingsQuery = `//groq
+    *[_type == "siteConfig"]
+  `
+  const siteSettings = await getClient(true).fetch(settingsQuery);
+
   return {
-    props: { preview, bookData, params },
+    props: { preview, bookData, params, siteSettings, },
   };
 }
 

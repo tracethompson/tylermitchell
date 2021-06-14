@@ -10,7 +10,7 @@ import { getImageDimensions } from '@sanity/asset-utils'
 
 const query = groq`*[_type == "photo" && slug.current == $slug][0]`;
   
-function PhotoContainer({ photoData }) {
+function PhotoContainer({ photoData, siteSettings }) {
   
   const router = useRouter();
   if (!router.isFallback && !photoData?.slug) {
@@ -55,7 +55,7 @@ function PhotoContainer({ photoData }) {
   // TODO MOBILE image gal wrapper THAT WORKS 'h-full w-full md:pt-8 pb-16 px-8 mx-auto flex content-center items-center relative'
 
   return (
-    <Layout currentTitle={title}>
+    <Layout title={title} siteSettings={siteSettings}>
       <div className="w-full h-full md:pt-8 pb-16">
         <div className="relative w-full h-full flex content-center items-center">
           <div className="h-full w-full md:pt-8 pb-16 px-4 lg:px-8 mx-auto flex content-center items-center relative">
@@ -76,8 +76,14 @@ export async function getStaticProps({ params, preview = false }) {
     slug: params.slug,
   });
 
+  const settingsQuery = `//groq
+    *[_type == "siteConfig"]
+  `
+  const siteSettings = await getClient(true).fetch(settingsQuery);
+
+
   return {
-    props: { preview, photoData, params },
+    props: { preview, photoData, params, siteSettings },
   };
 }
 

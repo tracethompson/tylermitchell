@@ -78,7 +78,7 @@ const InstallationFilmBody = ({handleImageClick, coverImage, title, details, des
   )
 } 
 
-function FilmContainer({ filmData }) {
+function FilmContainer({ filmData, siteSettings }) {
   const router = useRouter();
   if (!router.isFallback && !filmData?.slug) {
     return <Error statusCode={404} />;
@@ -138,7 +138,7 @@ function FilmContainer({ filmData }) {
   }
 
   return (
-    <Layout currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery}>
+    <Layout title={title} siteSettings={siteSettings} currentTitle={currentTitle} onBackPress={onBackPress} showBack={showImageGallery}>
       <div className="w-full h-full">
         {embed ?
           (
@@ -178,8 +178,13 @@ export async function getStaticProps({ params, preview = false }) {
     slug: params.slug,
   });
 
+  const settingsQuery = `//groq
+    *[_type == "siteConfig"]
+  `
+  const siteSettings = await getClient(true).fetch(settingsQuery);
+
   return {
-    props: { preview, filmData, params },
+    props: { preview, filmData, params, siteSettings },
   };
 }
 
