@@ -137,6 +137,10 @@ body {
   max-height: 
 }
 
+.photo__card {
+  height: 420px;
+}
+
 /* Start purging... */
 @tailwind utilities;
 /* Stop purging. */
@@ -147,5 +151,11 @@ body {
   .content__width {
     @apply ml-auto mt-0;
     width: calc(100% - 167px);
+  }
+}
+
+@screen md {
+  .photo__card {
+    height: 320px;
   }
 }

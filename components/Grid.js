@@ -45,11 +45,10 @@ const GridItemPhoto = ({
   item: { title, coverImage, slug},
 }) => {
   return (
-    <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 md:px-4 mb-4">
+    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 mx-auto sm:mx-0 sm:px-4 mb-4">
       <Link href={`/photography/${slug.current}`}>
         <div
-          className="w-full relative cursor-pointer group"
-          style={{ height: '290px' }}
+          className="w-full relative cursor-pointer group photo__card"
         >
           <div className="absolute bg-dark-filter h-full p-2 w-full relative top-0 left-0 flex lg:hidden lg:group-hover:flex flex-col content-center items-center justify-center text-center z-10">
             <h1 className="text-sm text-white mb-4">{title}</h1>

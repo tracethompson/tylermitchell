@@ -45,7 +45,7 @@ const MainBody = ({handleImageClick, coverImage, title, details, description, sh
         />
       </div>
       <img
-        className="block lg:hidden cursor-pointer w-full"
+        className="block lg:hidden cursor-pointer w-full mb-2 md:mb-0"
         src={
           urlFor(coverImage?.asset)
             .auto("format")
@@ -57,7 +57,7 @@ const MainBody = ({handleImageClick, coverImage, title, details, description, sh
       />
       <div className="flex flex-col lg:flex-row">
           <div className="flex flex-col lg:w-2/5">
-            <h1 className="font-bold md:text-2xl lg:text-3xl xl:text-4xl">{title}</h1>
+            <h1 className="font-bold text-2xl lg:text-3xl xl:text-4xl">{title}</h1>
             <p className="mb mt-auto">{subtitle}</p>
             <p className="">{year}</p>
           </div>
@@ -66,7 +66,7 @@ const MainBody = ({handleImageClick, coverImage, title, details, description, sh
             <div className="flex flex-col md:w-3/4">
               {details && details.map((block, i) => <RichText key={i} content={block} />)}
             </div>
-            <div className="flex flex-row mt-auto">
+            <div className="flex flex-col mt-2 xl:mt-auto">
               <a href={url} target="_blank">
                 <p className="cursor-pointer font-bold text-sm text-accent">
                   Press Release
@@ -74,11 +74,11 @@ const MainBody = ({handleImageClick, coverImage, title, details, description, sh
               </a>
               { buy ?
                 <a href={buy} target="_blank">
-                  <p className="ml-2 cursor-pointer font-bold text-accent text-sm">
+                  <p className="mt-2 cursor-pointer font-bold text-accent text-sm">
                     Buy
                   </p>
                 </a> : 
-                <p className="ml-2 font-bold text-gray-600 text-sm">
+                <p className=" mt-2 font-bold text-gray-600 text-sm">
                   Sold Out
                 </p>
               }
