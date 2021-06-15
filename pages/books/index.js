@@ -27,7 +27,7 @@ function BooksPageContainer({ data, siteSettings }) {
                   }
                   loading="lazy"
                 />
-                <div className="w-full md:w-2/3 md:pl-4 h-auto flex flex-col flex-grow">
+                <div className="w-full md:w-2/3 md:pl-4 h-auto flex flex-col flex-grow mt-1 md:mt-0">
                     <h1 className="font-bold italic text-xl mt-auto">{title}</h1>
                     <h2>{subtitle}</h2>
                     <h2>{year}</h2>
