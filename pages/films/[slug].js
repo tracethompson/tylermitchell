@@ -52,7 +52,7 @@ const InstallationFilmBody = ({handleImageClick, coverImage, title, details, des
       />
       <div className="flex flex-col md:flex-row">
           <div className="flex flex-col md:w-1/4">
-            <h1 className="font-bold md:text-2xl lg:text-3xl xl:text-4xl">{title}</h1>
+            <h1 className="font-bold text-2xl lg:text-3xl xl:text-4xl mt-1">{title}</h1>
             <p className="mb-2">{medium}</p>
             <div className="flex flex-col md:w-3/4">
               {details?.map((block, i) => <RichText key={i} content={block} />)}
