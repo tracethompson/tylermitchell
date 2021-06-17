@@ -25,7 +25,7 @@ const MainBody = ({handleImageClick, coverImage, title, description, showImageGa
   }
 
   return (
-    <div className="flex flex-col w-full lg:w-10/12 mx-auto px-4 lg:px-0 lg:pt-8 h-full">
+    <div className="flex flex-col w-full lg:w-10/12 mx-auto px-4 lg:px-0 pb-8 lg:pt-8 h-full">
       <div
         className="w-full relative mb-4 md:px-8 lg:px-0 h-3/4 lg:h-1/2 hidden lg:block"
         style={{ height: '60%' }}
@@ -53,11 +53,11 @@ const MainBody = ({handleImageClick, coverImage, title, description, showImageGa
         loading="lazy"
         onClick={handleImageClick}
       />
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row mt-1">
           <div className="flex flex-col w-full">
             <h1 className="font-bold md:text-2xl lg:text-3xl xl:text-4xl">{title}</h1>
             {description && description.map((block, i) => <RichText key={i} content={block} />)}
-            <div className="flex flex-row mt-auto">
+            <div className="flex flex-row mt-2 xl:mt-auto">
               <a href={url} target="_blank">
                 <p className="cursor-pointer font-bold text-sm text-accent">
                   Press Release

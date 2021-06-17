@@ -9,17 +9,22 @@ export default {
   fields: [
     {
       name: 'title',
-      title: 'Hero title',
+      title: 'Metadata title',
       type: 'string',
     },
     {
       name: 'description',
-      title: 'Hero description',
+      title: 'Matadata description',
       type: 'string',
     },
     {
       name: 'image',
-      title: 'Hero image',
+      title: 'Metadata image',
+      type: 'image',
+    },
+    {
+      name: 'homeImage',
+      title: 'Homepage image',
       type: 'image',
     },
   ],

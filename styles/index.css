@@ -134,7 +134,7 @@ body {
 
 .mobile__image {
   @apply absolute left-0 right-0 mx-auto max-w-full top-0 bottom-0 my-auto;
-  max-height: 
+  max-height: calc(100% - 45px);
 }
 
 .photo__card {
@@ -159,3 +159,9 @@ body {
     height: 320px;
   }
 }
+
+/* @screen sm {
+  .mobile__image {
+    @apply my-0
+  }
+} */

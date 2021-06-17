@@ -106,10 +106,10 @@ export default function ImageGallery({images, page, direction, setPage, paginate
       return (
         <div className="flex flex-row w-full h-full content-center items-center" onClick={handleClick}>
           <div className="w-1/2 h-full pr-4 flex items-center content-center">
-            <img className="max-h-full" src={chunk[0]}/>
+            <img className="max-h-full ml-auto" src={chunk[0]}/>
           </div>
           <div className="w-1/2 h-full pl-4 flex items-center content-center">
-            <img className="max-h-full" src={chunk[1]}/>
+            <img className="max-h-full mr-auto" src={chunk[1]}/>
           </div>
         </div>
       )

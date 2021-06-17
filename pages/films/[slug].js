@@ -104,7 +104,7 @@ function FilmContainer({ filmData, siteSettings }) {
   const formattedImages = images && images.map(img => {
     const {aspectRatio} = getImageDimensions(img.asset)
     return {
-      src: urlFor(img.asset).auto("format").fit("max").height(800).quality(100),
+      src: urlFor(img.asset).auto("format").fit("max").width(1000).quality(100),
       aspectRatio,
     }
   })

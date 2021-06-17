@@ -149,7 +149,7 @@ function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, t
       <div className="bg-white flex flex-col h-full max-h-full w-full overflow-scroll">
         <Header {...{route}}/>
         <main className="content__width max-h-full h-full overflow-scroll">{children}</main>
-        <footer className="absolute w-full left-0 bottom-0 pb-4 px-4 lg:pb-8 lg:px-8 flex text-right">  
+        <footer className="relative w-full left-0 bottom-0 pb-4 px-4 lg:pb-8 lg:px-8 flex text-right">  
           {isHome ? 
           (
             <div className="flex-col mt-auto hidden lg:flex">
