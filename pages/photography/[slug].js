@@ -79,7 +79,7 @@ function PhotoContainer({ photoData, siteSettings, imageGrid, setGrid }) {
 
   useEffect(() => {
     setGrid(false)
-  }, [slug.current])
+  }, [slug?.current])
 
 
   const handleImgClick = item => {
