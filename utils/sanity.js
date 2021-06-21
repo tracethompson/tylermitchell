@@ -72,7 +72,7 @@ export const chunkImages = images => {
   const chunks = []
   let chunk = []
   images.forEach(img => {
-    const {src, aspectRatio} = img
+    const {src, aspectRatio, _key} = img
     new Image().src = img.src
 
     // is a landscape
@@ -86,13 +86,13 @@ export const chunkImages = images => {
       chunk = []
 
       // fill with the new guy
-      chunk.push(src)
+      chunk.push({src, _key})
       chunks.push(chunk)
 
       chunk = []
       return
     } else {
-      chunk.push(src)
+      chunk.push({src, _key})
 
       //is the second portrait
       if (chunk.length > 1) {

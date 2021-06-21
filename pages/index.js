@@ -4,7 +4,6 @@ import Layout from "../components/Layout";
 
 
 function IndexPage({ data, siteSettings }) {
-  console.log('site settings: ', siteSettings)
   const image = siteSettings && siteSettings[0]?.homeImage
   return (
     <Layout siteSettings={siteSettings}>

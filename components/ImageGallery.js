@@ -106,10 +106,10 @@ export default function ImageGallery({images, page, direction, setPage, paginate
       return (
         <div className="flex flex-row w-full h-full content-center items-center" onClick={handleClick}>
           <div className="w-1/2 h-full pr-4 flex items-center content-center">
-            <img className="max-h-full ml-auto" src={chunk[0]}/>
+            <img className="max-h-full ml-auto" src={chunk[0]?.src}/>
           </div>
           <div className="w-1/2 h-full pl-4 flex items-center content-center">
-            <img className="max-h-full mr-auto" src={chunk[1]}/>
+            <img className="max-h-full mr-auto" src={chunk[1]?.src}/>
           </div>
         </div>
       )
@@ -117,10 +117,11 @@ export default function ImageGallery({images, page, direction, setPage, paginate
     return (
       <img
         className="max-h-full mx-auto"
-        src={chunk[0]}
+        src={chunk[0]?.src}
       />
     )
   }
+
   const flatImages = images.flat()
   let imageIndex = wrap(0, flatImages.length, page);
 
@@ -133,13 +134,13 @@ export default function ImageGallery({images, page, direction, setPage, paginate
       paginate(1)
     }
   }
-
+  
   return (
     <div className="relative left-0 w-full max-h-full h-full">
       <AnimatePresence initial={false} custom={direction}>
         <motion.img
           key={page}
-          src={flatImages[imageIndex]}
+          src={flatImages[imageIndex]?.src}
           className="mobile__image"
           variants={variants}
           custom={direction}

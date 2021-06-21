@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Link from "next/link";
 import { urlFor } from "../utils/sanity";
+import GridIcon from '../components/GridIcon'
+import useGrid from "../utils/useGrid";
 
 const BASE_URL = 'https://tylermitchell.co'
 
@@ -104,7 +106,7 @@ const Header = ({route}) => {
 }
 
 
-function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, title, description, latest, coverImage}) {
+function Layout({ setGrid, imageGrid, children, currentTitle, onBackPress, showBack, siteSettings, title, description, latest, coverImage}) {
   const router = useRouter()
   const {asPath, route} = router
   const isHome = route === '/'
@@ -114,6 +116,7 @@ function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, t
   const defaultTitle = siteSettings && siteSettings[0]?.title
   const defaultDescription = siteSettings && siteSettings[0]?.description
   const image = siteSettings && siteSettings[0]?.image
+  
   let imgAsset = null
   if (coverImage) {
     imgAsset = coverImage.asset
@@ -131,8 +134,12 @@ function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, t
   
   const pageTitle = title ? `${title} | Tyler Mitchell` : defaultTitle
   const ogDescription = description || defaultDescription
-  
 
+  
+  
+  const handleGridClick = () => {
+    setGrid(true)
+  }
 
   return (
     <>
@@ -169,6 +176,11 @@ function Layout({ children, currentTitle, onBackPress, showBack, siteSettings, t
           }
           { showBack ?
             <h1 className="cursor-pointer text-lg mt-auto ml-auto" onClick={onBackPress}>Back</h1> : null
+          }
+          {true ?
+            <div className="ml-auto mt-auto cursor-pointer" onClick={handleGridClick}>
+              <GridIcon />
+            </div> : null
           }
         </footer>
       </div>

@@ -9,8 +9,31 @@ import { useState, useEffect } from "react";
 import { getImageDimensions } from '@sanity/asset-utils'
 
 const query = groq`*[_type == "photo" && slug.current == $slug][0]`;
+
+const FullGrid = ({items, handleImgClick}) => {
+  return (
+  <div className="w-full lg:pt-8 px-4 mx-auto overflow-scroll relative">
+    <div className="flex flex-wrap max-w-full overflow-scroll">
+      {items.map(item => 
+        <img
+          className="h-48 md:px-4 mb-4 lg:mb-8 object-cover cursor-pointer"
+          src={
+            urlFor(item?.asset)
+              .auto("format")
+              .width(1000) 
+              .fit("max")
+              .quality(100)
+          }
+          loading="lazy"
+          onClick={() => handleImgClick(item)}
+        />
+      )}
+    </div>
+  </div>
+  )
+}
   
-function PhotoContainer({ photoData, siteSettings }) {
+function PhotoContainer({ photoData, siteSettings, imageGrid, setGrid }) {
   
   const router = useRouter();
   if (!router.isFallback && !photoData?.slug) {
@@ -25,7 +48,8 @@ function PhotoContainer({ photoData, siteSettings }) {
   const {
     title,
     images,
-    coverImage
+    coverImage,
+    slug
   } = film;
 
 
@@ -39,13 +63,13 @@ function PhotoContainer({ photoData, siteSettings }) {
 
   const formattedImages = images?.map(img => {
     const {aspectRatio} = getImageDimensions(img.asset)
+
     return {
       src: urlFor(img.asset).auto("format").fit("max").height(800).quality(100),
       aspectRatio,
+      _key: img._key
     }
   })
-
-  
 
   useEffect(() => {
     formattedImages.forEach(img => new Image().src = img.src)
@@ -53,17 +77,42 @@ function PhotoContainer({ photoData, siteSettings }) {
     setChunkedImages(chunks)
   }, [])
 
+  useEffect(() => {
+    setGrid(false)
+  }, [slug.current])
+
+
+  const handleImgClick = item => {
+    let idx = null
+    chunkedImages.forEach((chunk, i) => { 
+      if (chunk[0]._key === item._key) idx = i
+
+      if (idx === null && chunk[1]) {
+        if (chunk[1]._key === item._key) idx = i
+      }
+    }) 
+    const nD = idx > page ? -1 : 1
+    setGrid(false)
+    setPage([idx, nD])
+  }
+
   return (
-    <Layout title={title} siteSettings={siteSettings} currentTitle={title} coverImage={coverImage}>
-      <div className="w-full h-full lg:pt-8">
+    <Layout imageGrid={imageGrid} setGrid={setGrid} title={title} siteSettings={siteSettings} currentTitle={title} coverImage={coverImage}>
+      <div className={`w-full lg:pt-8 ${imageGrid ? 'min-h-full' : 'h-full'}`}>
         <div className="relative w-full h-full flex content-center items-center">
-          <div className="h-full w-full lg:pt-8  px-4 lg:px-8 mx-auto flex content-center items-center relative">
-            <ImageGallery images={chunkedImages} {...{page, direction, setPage, paginate}}/>
-          </div>
-          <div className="flex flex-row w-full h-full absolute top-0 left-0">
-            <div className="w-1/2 cursor-pointer" onClick={() => paginate(-1)}/>
-            <div className="w-1/2 cursor-pointer" onClick={() => paginate(1)}/>
-          </div>
+          {imageGrid ? 
+            <FullGrid items={images} handleImgClick={handleImgClick} />
+            : 
+            <div className="h-full w-full lg:pt-8  px-4 lg:px-8 mx-auto flex content-center items-center relative">
+              <ImageGallery images={chunkedImages} {...{page, direction, setPage, paginate}}/>
+            </div>
+          }
+          { !imageGrid ?
+            <div className="flex flex-row w-full h-full absolute top-0 left-0">
+              <div className="w-1/2 cursor-pointer" onClick={() => paginate(-1)}/>
+              <div className="w-1/2 cursor-pointer" onClick={() => paginate(1)}/>
+            </div> : null
+          }
         </div>
       </div>
     </Layout>
