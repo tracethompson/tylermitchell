@@ -7,6 +7,7 @@ import { urlFor, chunkImages } from "../../utils/sanity"
 import { getClient, usePreviewSubscription } from "../../utils/sanity";
 import { useState, useEffect } from "react";
 import { getImageDimensions } from '@sanity/asset-utils'
+import useWindowSize from '../../utils/useWindowSize'
 
 const query = groq`*[_type == "photo" && slug.current == $slug][0]`;
 
@@ -20,7 +21,7 @@ const FullGrid = ({items, handleImgClick}) => {
           src={
             urlFor(item?.asset)
               .auto("format")
-              .width(1000) 
+              .width(300) 
               .fit("max")
               .quality(100)
           }
@@ -65,7 +66,7 @@ function PhotoContainer({ photoData, siteSettings, imageGrid, setGrid }) {
     const {aspectRatio} = getImageDimensions(img.asset)
 
     return {
-      src: urlFor(img.asset).auto("format").fit("max").height(800).quality(100),
+      src: urlFor(img.asset).auto("format").fit("max").width(800).quality(100),
       aspectRatio,
       _key: img._key
     }
@@ -81,6 +82,8 @@ function PhotoContainer({ photoData, siteSettings, imageGrid, setGrid }) {
     setGrid(false)
   }, [slug?.current])
 
+  const { width } = useWindowSize()
+  const notMobile = width > 850
 
   const handleImgClick = item => {
     let idx = null
@@ -96,18 +99,20 @@ function PhotoContainer({ photoData, siteSettings, imageGrid, setGrid }) {
     setPage([idx, nD])
   }
 
+  const useGrid = notMobile
+
   return (
-    <Layout imageGrid={imageGrid} setGrid={setGrid} title={title} siteSettings={siteSettings} currentTitle={title} coverImage={coverImage}>
-      <div className={`w-full lg:pt-8 ${imageGrid ? 'min-h-full' : 'h-full'}`}>
+    <Layout imageGrid={imageGrid} setGrid={setGrid} useGrid={useGrid} title={title} siteSettings={siteSettings} currentTitle={title} coverImage={coverImage}>
+      <div className={`w-full lg:pt-8 ${imageGrid && useGrid ? 'min-h-full' : 'h-full'}`}>
         <div className="relative w-full h-full flex content-center items-center">
-          {imageGrid ? 
+          { useGrid && imageGrid ? 
             <FullGrid items={images} handleImgClick={handleImgClick} />
             : 
             <div className="h-full w-full lg:pt-8  px-4 lg:px-8 mx-auto flex content-center items-center relative">
               <ImageGallery images={chunkedImages} {...{page, direction, setPage, paginate}}/>
             </div>
           }
-          { !imageGrid ?
+          { !useGrid || !imageGrid ?
             <div className="flex flex-row w-full h-full absolute top-0 left-0">
               <div className="w-1/2 cursor-pointer" onClick={() => paginate(-1)}/>
               <div className="w-1/2 cursor-pointer" onClick={() => paginate(1)}/>

@@ -34,6 +34,7 @@ const InstallationFilmBody = ({handleImageClick, coverImage, title, details, des
             urlFor(coverImage?.asset)
               .auto("format")
               .fit("max")
+              .width(800)
               .quality(100)
           }
           loading="lazy"
@@ -45,6 +46,7 @@ const InstallationFilmBody = ({handleImageClick, coverImage, title, details, des
           urlFor(coverImage?.asset)
             .auto("format")
             .fit("max")
+            .width(800)
             .quality(100)
         }
         loading="lazy"

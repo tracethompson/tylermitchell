@@ -39,6 +39,7 @@ const MainBody = ({handleImageClick, coverImage, title, details, description, sh
             urlFor(coverImage?.asset)
               .auto("format")
               .fit("max")
+              .width(1000)
               .quality(100)
           }
           loading="lazy"
@@ -50,6 +51,7 @@ const MainBody = ({handleImageClick, coverImage, title, details, description, sh
           urlFor(coverImage?.asset)
             .auto("format")
             .fit("max")
+            .width(1000)
             .quality(100)
         }
         loading="lazy"

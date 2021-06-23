@@ -14,7 +14,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        'accent': '#9CAF73',
+        'accent': '#345740',
         'dark-filter': 'rgba(0,0,0,0.3)',
         'darker-filter': 'rgba(0,0,0,0.5)',
         'darkest-filter': 'rgba(0,0,0,0.9)',

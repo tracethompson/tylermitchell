@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Link from "next/link";
 import { urlFor } from "../utils/sanity";
 import GridIcon from '../components/GridIcon'
-import useGrid from "../utils/useGrid";
+import DiptycheIcon from '../components/DipytycheIcon'
 
 const BASE_URL = 'https://tylermitchell.co'
 
@@ -106,7 +106,7 @@ const Header = ({route}) => {
 }
 
 
-function Layout({ setGrid, imageGrid, children, currentTitle, onBackPress, showBack, siteSettings, title, description, latest, coverImage}) {
+function Layout({ setGrid, imageGrid, useGrid, children, currentTitle, onBackPress, showBack, siteSettings, title, description, latest, coverImage}) {
   const router = useRouter()
   const {asPath, route} = router
   const isHome = route === '/'
@@ -135,10 +135,13 @@ function Layout({ setGrid, imageGrid, children, currentTitle, onBackPress, showB
   const pageTitle = title ? `${title} | Tyler Mitchell` : defaultTitle
   const ogDescription = description || defaultDescription
 
-  
-  
+
   const handleGridClick = () => {
-    setGrid(true)
+    if (imageGrid) {
+      setGrid(false)
+    } else {
+      setGrid(true)
+    }
   }
 
   return (
@@ -177,9 +180,9 @@ function Layout({ setGrid, imageGrid, children, currentTitle, onBackPress, showB
           { showBack ?
             <h1 className="cursor-pointer text-lg mt-auto ml-auto" onClick={onBackPress}>Back</h1> : null
           }
-          {true ?
+          {useGrid ?
             <div className="ml-auto mt-auto cursor-pointer" onClick={handleGridClick}>
-              <GridIcon />
+              { imageGrid ? <DiptycheIcon /> : <GridIcon /> }
             </div> : null
           }
         </footer>
