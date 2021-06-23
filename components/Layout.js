@@ -4,7 +4,6 @@ import Link from "next/link";
 import { urlFor } from "../utils/sanity";
 import GridIcon from '../components/GridIcon'
 import DiptycheIcon from '../components/DipytycheIcon'
-
 const BASE_URL = 'https://tylermitchell.co'
 
 
@@ -106,7 +105,7 @@ const Header = ({route}) => {
 }
 
 
-function Layout({ setGrid, imageGrid, useGrid, children, currentTitle, onBackPress, showBack, siteSettings, title, description, latest, coverImage}) {
+function Layout({ setHighlight, highlightImage, setGrid, imageGrid, useGrid, children, currentTitle, onBackPress, showBack, siteSettings, title, description, latest, coverImage}) {
   const router = useRouter()
   const {asPath, route} = router
   const isHome = route === '/'
@@ -186,6 +185,23 @@ function Layout({ setGrid, imageGrid, useGrid, children, currentTitle, onBackPre
             </div> : null
           }
         </footer>
+        {highlightImage ? 
+          <div className="absolute w-full h-full top-0 left-0 bg-white z-index flex content-center items-center p-8 z-10">
+            <div className="absolute right-0 text-xl top-0 pt-4 pr-4 cursor-pointer" onClick={() => setHighlight(null)}>
+              X  
+            </div>
+            <img 
+              className="max-h-full max-w-full mx-auto my-auto"
+              src={
+                urlFor(highlightImage?.asset)
+                  .auto("format")
+                  .width(1500) 
+                  .fit("max")
+                  .quality(100) 
+              }
+            />
+          </div> : null
+        }
       </div>
     </>
   );

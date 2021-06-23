@@ -34,7 +34,7 @@ const FullGrid = ({items, handleImgClick}) => {
   )
 }
   
-function PhotoContainer({ photoData, siteSettings, imageGrid, setGrid }) {
+function PhotoContainer({ photoData, siteSettings, imageGrid, setGrid, setHighlight, highlightImage }) {
   
   const router = useRouter();
   if (!router.isFallback && !photoData?.slug) {
@@ -80,29 +80,31 @@ function PhotoContainer({ photoData, siteSettings, imageGrid, setGrid }) {
 
   useEffect(() => {
     setGrid(false)
+    setHighlight(null)
   }, [slug?.current])
 
   const { width } = useWindowSize()
   const notMobile = width > 850
 
   const handleImgClick = item => {
-    let idx = null
-    chunkedImages.forEach((chunk, i) => { 
-      if (chunk[0]._key === item._key) idx = i
+    // let idx = null
+    // chunkedImages.forEach((chunk, i) => { 
+    //   if (chunk[0]._key === item._key) idx = i
 
-      if (idx === null && chunk[1]) {
-        if (chunk[1]._key === item._key) idx = i
-      }
-    }) 
-    const nD = idx > page ? -1 : 1
-    setGrid(false)
-    setPage([idx, nD])
+    //   if (idx === null && chunk[1]) {
+    //     if (chunk[1]._key === item._key) idx = i
+    //   }
+    // }) 
+    // const nD = idx > page ? -1 : 1
+    // setGrid(false)
+    // setPage([idx, nD])
+    setHighlight(item)
   }
 
   const useGrid = notMobile
 
   return (
-    <Layout imageGrid={imageGrid} setGrid={setGrid} useGrid={useGrid} title={title} siteSettings={siteSettings} currentTitle={title} coverImage={coverImage}>
+    <Layout highlightImage={highlightImage} setHighlight={setHighlight} imageGrid={imageGrid} setGrid={setGrid} useGrid={useGrid} title={title} siteSettings={siteSettings} currentTitle={title} coverImage={coverImage}>
       <div className={`w-full lg:pt-8 ${imageGrid && useGrid ? 'min-h-full' : 'h-full'}`}>
         <div className="relative w-full h-full flex content-center items-center">
           { useGrid && imageGrid ? 
