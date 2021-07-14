@@ -72,11 +72,11 @@ export const chunkImages = images => {
   const chunks = []
   let chunk = []
   images.forEach(img => {
-    const {src, aspectRatio, _key} = img
+    const {src, aspectRatio, _key, singular} = img
     new Image().src = img.src
 
-    // is a landscape
-    if (aspectRatio > 1) {
+    // is a landscape or is set so show as singular image
+    if (aspectRatio > 1 || singular) {
       // push if portrait exists in it
       if (chunk.length) {
         chunks.push(chunk)

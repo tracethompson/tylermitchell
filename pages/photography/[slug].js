@@ -64,11 +64,11 @@ function PhotoContainer({ photoData, siteSettings, imageGrid, setGrid, setHighli
 
   const formattedImages = images?.map(img => {
     const {aspectRatio} = getImageDimensions(img.asset)
-
     return {
       src: urlFor(img.asset).auto("format").fit("max").width(800).quality(100),
       aspectRatio,
-      _key: img._key
+      _key: img._key,
+      singular: img.singular
     }
   })
 
