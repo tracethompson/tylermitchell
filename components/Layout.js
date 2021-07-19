@@ -162,10 +162,10 @@ function Layout({ setHighlight, highlightImage, setGrid, imageGrid, useGrid, chi
           {isHome ? 
           (
             <div className="flex-col mt-auto hidden lg:flex">
-              <a href="https://icmyfg.com" className="text-accent mb">
+              <a href="https://icmyfg.com" className="text-accent mb" target="_blank">
                 ICMYFG
               </a>
-              <a href="https://www.instagram.com/tylersphotos/?hl=en" className="text-accent mb">
+              <a href="https://www.instagram.com/tylersphotos/?hl=en" target="_blank" className="text-accent mb">
                 @tylersphotos
               </a>
             </div>
