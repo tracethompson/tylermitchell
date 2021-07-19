@@ -155,9 +155,9 @@ function Layout({ setHighlight, highlightImage, setGrid, imageGrid, useGrid, chi
         <meta name="og:description" content={ogDescription} />
         <meta name="og:image" content={ogImage} />
       </Head>
-      <div className="bg-white flex flex-col h-full max-h-full w-full overflow-scroll">
+      <div className="bg-white flex flex-col h-full max-h-full w-full overflow-auto">
         <Header {...{route}}/>
-        <main className="content__width max-h-full h-full overflow-scroll">{children}</main>
+        <main className="content__width max-h-full h-full overflow-auto">{children}</main>
         <footer className="relative w-full left-0 bottom-0 pb-4 px-4 lg:pb-8 lg:px-8 flex text-right">  
           {isHome ? 
           (

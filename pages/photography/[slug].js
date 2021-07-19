@@ -13,8 +13,8 @@ const query = groq`*[_type == "photo" && slug.current == $slug][0]`;
 
 const FullGrid = ({items, handleImgClick}) => {
   return (
-  <div className="w-full lg:pt-8 px-4 mx-auto overflow-scroll relative">
-    <div className="flex flex-wrap max-w-full overflow-scroll">
+  <div className="w-full lg:pt-8 px-4 mx-auto overflow-auto relative">
+    <div className="flex flex-wrap max-w-full overflow-auto">
       {items.map(item => 
         <img
           className="h-48 md:px-4 mb-4 lg:mb-8 object-cover cursor-pointer"
