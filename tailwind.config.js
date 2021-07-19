@@ -19,6 +19,10 @@ module.exports = {
         'darker-filter': 'rgba(0,0,0,0.5)',
         'darkest-filter': 'rgba(0,0,0,0.9)',
       },
+      screens: {
+        '2xl': '1750px',
+        '3xl': '2200px'
+      }
     },
   },
   variants: {

@@ -151,6 +151,7 @@ body {
   .content__width {
     @apply ml-auto mt-0;
     width: calc(100% - 167px);
+    /* max-width: 1600px; */
   }
 }
 
@@ -159,6 +160,7 @@ body {
     height: 320px;
   }
 }
+
 
 /* @screen sm {
   .mobile__image {

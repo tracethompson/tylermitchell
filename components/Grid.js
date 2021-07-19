@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const GridItemFilm = ({ item: { title,  coverImage, slug } }) => {
   return (
-    <div className="w-full md:w-1/2 md:px-4 mb-4 lg:mb-16" onClick={() => null}>
+    <div className="w-full md:w-1/2 md:px-4 mb-4 lg:mb-16 2xl:w-1/3 3xl:w-1/5" onClick={() => null}>
       <Link href={`/films/${slug.current}`}>
         <div
           className="w-full relative cursor-pointer group"
@@ -50,7 +50,7 @@ const GridItemPhoto = ({
     .fit("max")
     .quality(100)
   return (
-    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 mx-auto sm:mx-0 sm:px-4 mb-4">
+    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 2xl:w-1/6 3xl:w-1/7 mx-auto sm:mx-0 sm:px-4 mb-4">
       <Link href={`/photography/${slug.current}`}>
         <div className="w-full relative cursor-pointer group photo__card">
           <div className="absolute bg-dark-filter h-full p-2 w-full relative top-0 left-0 flex lg:hidden lg:group-hover:flex flex-col content-center items-center justify-center text-center z-10">
