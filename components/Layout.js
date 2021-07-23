@@ -46,6 +46,14 @@ const MakeHeaderItems = ({route}) => {
             </a>
           </Link>
         )
+    case '/about':
+      return (
+        <Link href="/about">
+          <a className={linkClass}>
+            About
+          </a>
+        </Link>
+      )
     default:
       return (
         <>
@@ -72,6 +80,11 @@ const MakeHeaderItems = ({route}) => {
           <a href="mailto:studio@tylermitchell.co" className={linkClass}>
             Contact
           </a>
+          <Link href="/about">
+            <a className={linkClass}>
+              About
+            </a>
+          </Link>
         </>
       )
   }

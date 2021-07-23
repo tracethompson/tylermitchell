@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { getClient, urlFor } from "../utils/sanity";
 import Layout from "../components/Layout";
 

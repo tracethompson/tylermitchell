@@ -27,5 +27,15 @@ export default {
       title: 'Homepage image',
       type: 'image',
     },
+    {
+      name: 'about',
+      title: 'About',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+        },
+      ],
+    },
   ],
 };

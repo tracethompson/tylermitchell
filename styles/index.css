@@ -117,6 +117,18 @@ body {
   transform: scale(-1);
 }
 
+.about .markdown h2 {
+  @apply text-2xl;
+}
+
+.about .markdown p:empty {
+  @apply mb-4;
+}
+
+.about .markdown h2:empty {
+  @apply mb-4;
+}
+
 .refresh {
   padding: 10px;
   position: absolute;

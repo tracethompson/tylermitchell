@@ -59,8 +59,8 @@ const MainBody = ({handleImageClick, coverImage, title, details, description, sh
       />
       <div className="flex flex-col lg:flex-row">
           <div className="flex flex-col lg:w-2/5">
-            <h1 className="font-bold text-2xl lg:text-3xl xl:text-4xl">{title}</h1>
-            <p className="mb mt-auto">{subtitle}</p>
+            <h1 className="font-bold text-2xl lg:text-2xl xl:text-3xl">{title}</h1>
+            <p className="mb mt">{subtitle}</p>
             <p className="">{year}</p>
           </div>
           <div className="flex flex-col lg:w-3/5 mt-2 lg:pl-4 pb-8 lg:pb-0">
