@@ -77,14 +77,14 @@ const MakeHeaderItems = ({route}) => {
               Exhibitions
             </a>
           </Link>
-          <a href="mailto:studio@tylermitchell.co" className={linkClass}>
-            Contact
-          </a>
           <Link href="/about">
             <a className={linkClass}>
               About
             </a>
           </Link>
+          <a href="mailto:studio@tylermitchell.co" className={linkClass}>
+            Contact
+          </a>
         </>
       )
   }

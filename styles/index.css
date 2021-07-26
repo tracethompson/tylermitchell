@@ -21,7 +21,8 @@
 @font-face {
   font-family: "Univers";
   src: url("/fonts/Linotype-UniversLTPro-65BoldOblique.woff") format("woff");
-  font-style: italic;
+  font-style: italic, oblique;
+  font-weight: bold;
 }
 
 @font-face {
@@ -45,6 +46,7 @@
   font-family: "Akzidenz";
   src: url("/fonts/AkzidGrtskProBolIta.woff") format("woff");
   font-style: italic;
+  font-weight: bold;
 }
 
 /* Start purging... */
@@ -172,7 +174,6 @@ body {
     height: 320px;
   }
 }
-
 
 /* @screen sm {
   .mobile__image {
