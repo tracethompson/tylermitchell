@@ -111,6 +111,7 @@ function ExhibitionsContainer({ exhibitionData, siteSettings }) {
     return {
       src: urlFor(img.asset).auto("format").fit("max").width(800).quality(100),
       aspectRatio,
+      singular: img.singular
     }
   })
 

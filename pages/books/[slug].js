@@ -133,6 +133,7 @@ function BookContainer({ bookData, siteSettings }) {
     return {
       src: urlFor(img.asset).auto("format").fit("max").height(800).quality(100),
       aspectRatio,
+      singular: img.singular
     }
   })
 

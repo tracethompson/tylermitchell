@@ -76,7 +76,10 @@ function PhotoContainer({ photoData, siteSettings, imageGrid, setGrid, setHighli
     formattedImages.forEach(img => new Image().src = img.src)
     const chunks = chunkImages(formattedImages)
     setChunkedImages(chunks)
-  }, [])
+
+    document.addEventListener('contextmenu', function(event){
+      event.preventDefault();})
+    }, [])
 
   useEffect(() => {
     setGrid(false)

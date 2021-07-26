@@ -44,7 +44,18 @@ export default {
       title: 'Images',
       type: 'array',
       description: 'Default images for products',
-      of: [{ type: 'image',   options: {metadata: ['image']} }],
+      of: [{ 
+        type: 'image',   
+        options: {metadata: ['image']},
+        fields: [
+          {
+            title: 'Show as singular image (disable diptych view)?',
+            name: 'singular',
+            type: 'boolean',
+            description: 'All portrait photos default to show as diptych on desktop view unless this button is clicked. All landscape photos will show as singular images always.',
+          }
+        ],
+      }],
     },
     {
       name: 'coverImage',
