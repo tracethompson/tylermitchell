@@ -185,7 +185,7 @@ function Layout({ setHighlight, highlightImage, setGrid, imageGrid, useGrid, chi
             ) : null
           }
           { currentTitle ?
-            <h2 className="mt-auto text-lg">
+            <h2 className="mt-auto text-lg text-left pr-4">
               {currentTitle}
             </h2> : null
           }
