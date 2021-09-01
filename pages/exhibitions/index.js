@@ -22,7 +22,7 @@ function ExhibitionsPageContainer({ data, siteSettings }) {
                     urlFor(coverImage?.asset)
                       .auto("format")
                       .fit("max")
-                      .width(400)
+                      .width(1000)
                       .quality(100)
                   }
                   loading="lazy"

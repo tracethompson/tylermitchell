@@ -37,7 +37,6 @@ const MainBody = ({handleImageClick, coverImage, title, description, showImageGa
             urlFor(coverImage?.asset)
               .auto("format")
               .fit("max")
-              .width(800)
               .quality(100)
           }
           loading="lazy"
@@ -49,7 +48,6 @@ const MainBody = ({handleImageClick, coverImage, title, description, showImageGa
           urlFor(coverImage?.asset)
             .auto("format")
             .fit("max")
-            .width(800)
             .quality(100)
         }
         loading="lazy"
@@ -109,7 +107,7 @@ function ExhibitionsContainer({ exhibitionData, siteSettings }) {
   const formattedImages = images && images.map(img => {
     const {aspectRatio} = getImageDimensions(img.asset)
     return {
-      src: urlFor(img.asset).auto("format").fit("max").width(800).quality(100),
+      src: urlFor(img.asset).auto("format").fit("max").quality(100),
       aspectRatio,
       singular: img.singular
     }
