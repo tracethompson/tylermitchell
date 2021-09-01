@@ -107,7 +107,7 @@ function ExhibitionsContainer({ exhibitionData, siteSettings }) {
   const formattedImages = images && images.map(img => {
     const {aspectRatio} = getImageDimensions(img.asset)
     return {
-      src: urlFor(img.asset).auto("format").fit("max").quality(100),
+      src: urlFor(img.asset).auto("format").fit("max").width(1500).quality(100),
       aspectRatio,
       singular: img.singular
     }
